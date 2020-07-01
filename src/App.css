@@ -34,3 +34,7 @@ button{
   min-height: 3vh;
   min-width: 10vh;
 }
+section{
+  font-family: fantasy;
+  margin-top: 10vh;
+}

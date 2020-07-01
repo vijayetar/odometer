@@ -23,7 +23,13 @@ function Header(props){
       </header>
   )
 }
-
+function Section(props){
+  return (
+    <section>
+      actual days are = {props.actual_num}
+    </section>
+  )
+}
 function Footer(props){
   return (
     <footer>
@@ -31,12 +37,18 @@ function Footer(props){
     </footer>
   )
 }
-
+function Padding(props){
+  return (
+    <h2>
+      {props.counter} Days
+    </h2>
+  )
+}
 class Odometer extends React.Component{
   constructor(){
     super();
     this.state = {
-      day:1,
+      day:0,
     }
   }
   changeDays(change){
@@ -57,6 +69,13 @@ class Odometer extends React.Component{
       day: newDay,
     })
   }
+  paddingDays(day){
+    while (day>9999){
+      // day = day-10000
+      return String(day).slice(-4).padStart(day.length,'0')
+    }
+    return String(day).padStart(4,'0'); 
+  }
   render(){
     return (
       <>
@@ -66,7 +85,8 @@ class Odometer extends React.Component{
       <button onClick={() => this.changeDays("10")}>+10</button>
       <button onClick={() => this.changeDays("1")}>+1</button>
       </nav>
-      <h2>{this.state.day} days </h2>
+      <Padding counter={this.paddingDays(this.state.day)}/>
+      <Section actual_num= {this.state.day}/>
       </>
     )
   }
